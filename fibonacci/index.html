@@ -1,0 +1,51 @@
+<html>
+  <style>
+    * {
+      padding: 4px;
+      margin: 4px;
+    }
+
+    button, input {
+      background-color: white;
+      border: 1px solid #aaa;
+      border-radius: 2px;
+    }
+  </style>
+  <h1>WASM fibonacci example</h1>
+  <label>Input value</label>
+  <input id="fib-val" type="number">
+  <div>
+    <button id="fib-button-js">Calc fibonacci JS</button>
+    <span id="fib-ans-js"></span>
+  </div>
+  <div>
+    <button id="fib-button-wasm">Calc fibonacci WASM</button>
+    <span id="fib-ans-wasm"></span>
+  </div>
+  <script>
+    function fib(val) {
+      if (val === 1) return 1;
+      if (val === 2) return 1;
+
+      return fib(val-1) + fib(val-2)
+    }
+
+    fetch('/wasm-fibonacci/target/wasm32-unknown-unknown/debug/wasm_fibonacci.wasm').then(response => response.arrayBuffer())
+      .then(bytes => WebAssembly.instantiate(bytes, {}))
+      .then(results => {
+        const btnWasm = document.getElementById('fib-button-wasm')
+        btnWasm.addEventListener('click', () => {
+          const val = Number(document.getElementById('fib-val').value)
+          const ansElm = document.getElementById('fib-ans-wasm')
+          ansElm.innerHTML = results.instance.exports.fib(val)
+        })
+      })
+
+    const btnJS = document.getElementById('fib-button-js')
+    btnJS.addEventListener('click', () => {
+      const val = Number(document.getElementById('fib-val').value)
+      const ansElm = document.getElementById('fib-ans-js')
+      ansElm.innerHTML = fib(val)
+    })
+  </script>
+</html>

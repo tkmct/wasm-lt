@@ -1,0 +1,9 @@
+[package]
+name = "wasm-fibonacci"
+version = "0.1.0"
+authors = ["Takamichi-tsutsumi <takamichi_tsutsumi@waku-2.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
