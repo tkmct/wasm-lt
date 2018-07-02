@@ -33,6 +33,13 @@ impl Parser {
             '#' => {
                 self.parse_title()
             }
+            '-' => {
+                if char::is_whitespace(self.input[self.pos+1..].chars().next().unwrap()) {
+                    self.parse_list()
+                } else {
+                    self.parse_text()
+                }
+            }
             _ => {
                 self.parse_text()
             }
@@ -53,6 +60,14 @@ impl Parser {
     /// Parse text
     fn parse_text(&mut self) -> String {
         self.consume_while(|c| !is_newline(c))
+    }
+
+    fn parse_list(&mut self) -> String {
+        self.consume_char();
+        self.consume_whitespace();
+
+        let text = self.parse_text();
+        create_html_element("li".to_string(), text)
     }
 
     /// Consume and discard zero or more whitespace chars
@@ -116,7 +131,7 @@ mod test {
             input: "# Hello, title\nThis is takamichi\n- list\n- list".to_string(),
         };
 
-        assert_eq!(parser.parse_lines(), "<h1>Hello, title</h1><p>This is takamichi</p><li>list</li><li>list</li>");
+        assert_eq!(parser.parse_lines(), "<h1>Hello, title</h1>This is takamichi<li>list</li><li>list</li>");
     }
 
     #[test]
@@ -143,5 +158,14 @@ mod test {
             pos: 0,
         };
         assert_eq!(parser2.parse_title(), "<h3>Hello, title</h3>");
+    }
+
+    #[test]
+    fn test_parse_list() {
+        let mut parser = Parser {
+            input: "- list item".to_string(),
+            pos: 0,
+        };
+        assert_eq!(parser.parse_list(), "<li>list item</li>");
     }
 }
