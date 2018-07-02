@@ -24,8 +24,6 @@ class Parser {
     // Parse title
     if (this.currentChar() === '#') {
       const sharps = this.consumeWhile(c => c === '#')
-      console.info('Parse title')
-      console.info(sharps)
       if (this.currentChar() !== ' ') {
         return sharps+this.consumeWhile(c =>  c !== '\n');
       }
@@ -91,7 +89,6 @@ const previewArea = document.getElementById('preview')
 btn.addEventListener('click', () => {
   const input = document.getElementById('markdown-text').value
   const parser = new Parser(input)
-  window.parser = parser;
   const result = parser.parse()
 
   previewArea.innerHTML = result
