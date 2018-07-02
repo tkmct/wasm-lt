@@ -22,10 +22,10 @@ Takamichi Tsutsumi
 ***
 ## フロントエンド今昔
 昔
-![](some-old-web-site-screenshot.jpg)
-
+![](/Users/uu107017/Documents/ScreenShots/スクリーンショット%202018-07-02%2022.52.10.png)
+***
 今
-![](some-new-web-app-screenshot.jpg)
+![](/Users/uu107017/Documents/ScreenShots/スクリーンショット%202018-07-02%2022.52.49.png)
 
 
 ***
@@ -39,9 +39,9 @@ Documentをやりとりするためのwebから
 ***
 
 ## Solutions
-React => 仮想DOMの概念でリッチなアプリケーション(SPA)を実現する手段
-v8 => JITベースの高速なJavaScript実行環境
-Servo => Mozilaが作ってる並列レンダリングを中心に据えたブラウザレンダリングエンジン
+- React: 仮想DOMの概念でリッチなアプリケーション(SPA)を実現する手段
+- v8: JITベースの高速なJavaScript実行環境
+- Servo: Mozilaが作ってる並列レンダリングを中心に据えたブラウザレンダリングエンジン
 
 ***
 
@@ -50,6 +50,7 @@ JavaScript on webの問題もある
 - 実行速度(V8などで高速化しているとはいえ速度的な制約はある)
 - 動的型付けに起因する実行時エラー
 - バンドルサイズの肥大化(Reactアプリケーションのデカさ)
+![](/Users/uu107017/Documents/ScreenShots/スクリーンショット%202018-07-02%2023.02.39.png)
 
 
 ***
@@ -58,7 +59,7 @@ JavaScript on webの問題もある
 - 高速
 - 小ファイルサイズ
 - 型安全
-- 既存の資産の活用 (OpenCV, Unity)
+- 既存の資産の活用 (OpenCV, Unityとかつかえる)
 
 
 ***
@@ -68,15 +69,7 @@ JavaScript on webの問題もある
 
 
 ***
-
-## 比較
-#### 速度
-
-#### サイズ
-
-***
-
-# Live coding
+# DEMO
 
 ***
 
@@ -84,13 +77,7 @@ JavaScript on webの問題もある
 
 ***
 
-## DOM operation
+## Markdown parser
 
 ***
-
-## OpenCV
-
-***
-
-## Unity
-
+## Wasmフレンズ募集中
