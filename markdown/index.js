@@ -1,5 +1,5 @@
-const js = import("./wasm-markdown/wasm_markdown");
+const js = import("./wasm-markdown/build/wasm_markdown");
 
 js.then(js => {
-  js.greet("World!");
+  console.info(js.parse("Takamichi!"))
 });
